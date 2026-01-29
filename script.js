@@ -45,8 +45,8 @@ function mostrarExito(campo) {
   }
 }
 
-function validarCampo(campo, regex, mensajeError) {
-  if (!regex.test(campo.value.trim())) {
+function validarCampo(campo, validaciones, mensajeError) {
+  if (!validaciones.test(campo.value.trim())) {
     throw new Error(mensajeError);
   }
   mostrarExito(campo);
