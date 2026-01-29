@@ -1,0 +1,26 @@
+input {
+  padding: 6px;
+  width: 250px;
+  box-sizing: border-box;
+}
+
+.valido {
+  border: 2px solid #2ecc71;
+  background-color: #eafaf1;
+}
+
+.invalido {
+  border: 2px solid #e74c3c;
+  background-color: #fdecea;
+}
+
+.error-msg {
+  color: #e74c3c;
+  font-size: 0.85em;
+  margin-top: 4px;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
