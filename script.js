@@ -120,3 +120,43 @@ function validarEdad() {
 
   mostrarExito(campos.birthdate);
 }
+
+// Verificación de formulario completo
+function verificarFormularioCompleto() {
+  const invalidos = document.querySelectorAll(".invalido");
+  submitBtn.disabled = invalidos.length > 0 || !campos.terms.checked;
+}
+
+// Blur e input
+function manejarEventos(campo, validacion) {
+  campo.addEventListener("blur", () => {
+    touched[campo.id] = true;
+    try {
+      validacion();
+    } catch (e) {
+      mostrarError(campo, e.message);
+    }
+    verificarFormularioCompleto();
+  });
+
+  campo.addEventListener("input", () => {
+    if (!touched[campo.id]) return;
+    try {
+      validacion();
+    } catch (e) {
+      mostrarError(campo, e.message);
+    }
+    verificarFormularioCompleto();
+  });
+}
+
+// Asignación a los campos
+manejarEventos(campos.nombre, validarNombre);
+manejarEventos(campos.email, validarEmail);
+manejarEventos(campos.telefono, validarTelefono);
+manejarEventos(campos.dni, validarDNI);
+manejarEventos(campos.password, validarPassword);
+manejarEventos(campos.passwordConfirm, validarPasswordConfirm);
+manejarEventos(campos.birthdate, validarEdad);
+
+campos.terms.addEventListener("change", verificarFormularioCompleto);
